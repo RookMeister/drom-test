@@ -1,0 +1,13 @@
+.form {
+  position: relative;
+}
+
+.form > div {
+  margin-bottom: 16px;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 16px;
+}
