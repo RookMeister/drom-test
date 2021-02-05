@@ -1,0 +1,45 @@
+.spinner {
+  display: inline-block;
+  color: #333333;
+}
+
+.spinner > .shims {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.spinner > .container {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+  z-index: 1;
+}
+
+.spinner > .container > .loader {
+  width: 32px;
+  height: 32px;
+  border: 2px solid;
+  color: #db001b;
+}
+
+.spinner > .container > .loader {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  animation: spin 0.75s infinite linear;
+  border-top-color: transparent;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
