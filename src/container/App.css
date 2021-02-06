@@ -8,7 +8,7 @@
 }
 
 .App {
-  max-width: 400px;
+  max-width: 500px;
   font-family: Arial, sans-serif;
 }
 
@@ -23,14 +23,14 @@
   line-height: 16px;
 }
 
-.App-footer > a {
+a {
   text-decoration: none;
   cursor: pointer;
   color: hsl(209,77%,45%);
   border-bottom: 1px solid transparent;
 }
 
-.App-footer > a:hover {
+a:hover {
   color: #db001b;
 }
 
