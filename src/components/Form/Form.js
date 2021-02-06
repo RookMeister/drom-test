@@ -7,25 +7,24 @@ import ru from "date-fns/locale/ru";
 import  "./Form.css";
 
 import { getCities, getCityDate } from '../../actions/citiesActions'
-// import Greetings from './Greetings';
-// import FirstNameField from './FirstNameField';
-// import LastNameField from './LastNameField';
+
 import TextField from '../TextField/TextField';
 import Select from '../Select/Select';
 import CityInfo from '../CityInfo/CityInfo';
 import Loader from '../Loader/Loader';
+import Button from '../Button/Button';
 
 class Form extends React.Component {
   state = {
     cityValue: '',
     dayValue: '',
-    dayError: '',
+    dayError: null,
     hoursValue: '',
-    hoursError: '',
+    hoursError: null,
     phoneValue: '',
-    phoneError: '',
+    phoneError: null,
     fioValue: '',
-    fioError: '',
+    fioError: null,
   };
 
   placeholder = { name: 'Владивосток' };
@@ -54,7 +53,7 @@ class Form extends React.Component {
   }
 
   validateName = name => {
-    const regex = /[A-Za-z]{3,}/;
+    const regex = /[A-Za-z]{3,}|[А-Я,а-яё]{3,}/;
     return !regex.test(name)
       ? "Пожалуйста, укажите имя"
       : "";
@@ -72,7 +71,6 @@ class Form extends React.Component {
   }
 
   onBlur = (type) => {
-    console.log(2, this.state.dayValue);
     const { fioValue, phoneValue, dayValue, hoursValue } = this.state;
     switch (type) {
       case 'fio':
@@ -97,13 +95,16 @@ class Form extends React.Component {
     }
   };
 
-  onFioChange = event => this.setState({fioValue: event.target.value});
-  onPhoneChange = event => this.setState({fioValue: event.target.value});
+  onFioChange = event => this.setState({fioValue: event.target.value, fioError: this.validateName(event.target.value)});
+  onPhoneChange = event => this.setState({phoneValue: event.target.value, phoneError: this.validatePhone(event.target.value)});
 
   render() {
     const { phoneError, fioError, dayError, cityValue, dayValue, hoursValue, phoneValue, fioValue } = this.state;
     const { cityOptions, dateOptions, isFetching } = this.props.cities;
     const hoursOptions = this.state.dayValue && this.state.dayValue.hours || [];
+
+    const condition = phoneError === null || dayError=== null || fioError === null;
+    const validForm = !(phoneError || dayError || fioError) && !condition;
     return (
       <div className='form'>
         <div>
@@ -111,9 +112,7 @@ class Form extends React.Component {
             type={'city'}
             value={cityValue}
             options={cityOptions}
-            onChange={this.setCity}
-            onBlur={this.onBlur}
-            error={phoneError}/>
+            onChange={this.setCity}/>
         </div>
         <div className='form__row'>
           <Select
@@ -151,6 +150,9 @@ class Form extends React.Component {
             onChange={this.onFioChange}
             onBlur={this.onBlur}
             error={fioError} />
+        </div>
+        <div className='form__footer'>
+          <Button title={'Записаться'} disabled={!validForm}/>
         </div>
         {isFetching && <Loader />}
       </div>
