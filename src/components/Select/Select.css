@@ -12,6 +12,7 @@
   font-size: 16px;
   font-weight: bold;
   width: 100%;
+  z-index: 1;
 }
 
 .select__dropdown > div {
@@ -28,7 +29,7 @@
   background-color: hsla(0,0%,0%,0.15);
 }
 
-.select button {
+.select > button {
   height: 56px;
   text-align: left;
   position: relative;
@@ -43,7 +44,13 @@
   background-color: #e9e9e9;
 }
 
-.select svg {
+.select > button.focus {
+  outline-width: 5px;
+  outline-offset: -2px;
+  outline-color: -webkit-focus-ring-color;
+}
+
+.select > svg {
   display: block;
   position: absolute;
   right: 10px;
@@ -57,4 +64,10 @@
 
 .select__placeholder {
   color: #b6a0a0;
+}
+
+.select + .error {
+  font-size: 13px;
+  color: #db001b;
+  margin-top: 8px;
 }
