@@ -1,0 +1,31 @@
+.button {
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid #db001b;
+  color: #fff;
+  border-radius: 25px 25px 25px 25px;
+  width: auto;
+  height: auto;
+  font-size: 14px;
+  padding: 16px 32px;
+  background-color: #db001b;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+
+.button:hover, .button:active {
+  border: none;
+  color: #db001b;
+  background-color: #fff;
+  border: 1px solid #db001b;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  background-color: #db001b;
+  color: #fff;
+  opacity: .5;
+  transform: none;
+}
