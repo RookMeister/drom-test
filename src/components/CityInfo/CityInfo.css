@@ -1,0 +1,10 @@
+.city-info__sub {
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 18px;
+  margin-left: 16px;
+}
+
+.city-info__sub > p {
+  margin: 0;
+}
