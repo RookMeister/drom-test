@@ -13,7 +13,6 @@ export function ordersReducer(state = initialState, action) {
     case DEL_ITEM:
       const orders = [...state.orders];
       orders.splice(action.payload, 1)
-      console.log(123, action);
       return { ...state, orders: orders };
     case SET_SUCCESS:
       return { ...state, isSuccess: action.payload };

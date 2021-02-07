@@ -3,6 +3,8 @@
 }
 
 .select__dropdown {
+  max-height: 280px;
+  overflow: auto;
   display: block;
   position: absolute;
   margin-top: 10px;

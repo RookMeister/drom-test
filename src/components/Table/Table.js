@@ -20,7 +20,7 @@ class Item extends React.Component {
         <td>{`${value.hoursValue.begin}-${value.hoursValue.end}`}</td>
         <td>{value.phoneValue}</td>
         <td>{value.fioValue}</td>
-        <td><Button onClick={this.del.bind(this, this.props.index)} title={'Удалить'+ this.props.index}/></td>
+        <td><Button onClick={this.del.bind(this, this.props.index)} title={'Удалить'}/></td>
       </tr>;
   }
 }

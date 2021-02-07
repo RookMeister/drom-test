@@ -15,7 +15,6 @@ import { delItem } from '../actions/ordersActions';
 
 function App({appointment, delItemAction}) {
   const { isSuccess, orders } = appointment;
-  console.log(1, orders);
   return (
     <Router>
       <div className="App">
@@ -38,7 +37,7 @@ function App({appointment, delItemAction}) {
           </Switch>
         </div>
         <footer className="App-footer">
-          Нажимая "Записаться", я выражаю своё согласие с обработкой моих персональных данных в соотвествии с принятой <a>политикой конфиденциальности</a> и принимаю <a>пользовательское соглашение</a>
+          Нажимая "Записаться", я выражаю своё согласие с обработкой моих персональных данных в соотвествии с принятой <a href={'http://memesmix.net/media/created/td09d5.jpg'}>политикой конфиденциальности</a> и принимаю <a href={'http://memesmix.net/media/created/nbhcue.jpg'}>пользовательское соглашение</a>
         </footer>
       </div>
     </Router>
