@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from 'react-redux'
 
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 import ru from "date-fns/locale/ru";
 
 import  "./Form.css";
 
-import { getCities, getCityDate } from '../../actions/citiesActions'
+import { getCities, getCityDate } from '../../actions/citiesActions';
+import { addItem } from '../../actions/ordersActions';
 
 import TextField from '../TextField/TextField';
 import Select from '../Select/Select';
@@ -82,7 +83,6 @@ class Form extends React.Component {
         this.setState({ phoneError });
         break;
       case 'day':
-        console.log(3, this.state.dayValue);
         const dayError = this.validateIsRequired(dayValue);
         this.setState({ dayError });
         break;
@@ -96,15 +96,32 @@ class Form extends React.Component {
   };
 
   onFioChange = event => this.setState({fioValue: event.target.value, fioError: this.validateName(event.target.value)});
-  onPhoneChange = event => this.setState({phoneValue: event.target.value, phoneError: this.validatePhone(event.target.value)});
+  onPhoneChange = event =>{
+    const val = event.target.value.replace(/^(\+7|7|8)(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 ($2) $3-$4-$5');
+    this.setState({phoneValue: val, phoneError: this.validatePhone(val)})
+  };
+
+  isValidForm = () => {
+    const { phoneError, fioError, dayError, cityValue, dayValue, hoursValue, phoneValue, fioValue } = this.state;
+    const errors = phoneError === null || dayError=== null || fioError === null;
+    const values = !!(cityValue && dayValue && hoursValue && phoneValue && fioValue);
+    return !(phoneError || dayError || fioError) && !errors && values;
+  }
+
+  onSumbit = () => {
+    const { cityValue, dayValue, hoursValue, phoneValue, fioValue } = this.state;
+    const validForm = this.isValidForm();
+    if (validForm) {
+      this.props.addItemAction({cityValue, dayValue, hoursValue, phoneValue, fioValue})
+      this.setState({fioValue: '', phoneValue: '', dayValue: '', hoursValue: ''});
+    }
+  }
 
   render() {
     const { phoneError, fioError, dayError, cityValue, dayValue, hoursValue, phoneValue, fioValue } = this.state;
     const { cityOptions, dateOptions, isFetching } = this.props.cities;
     const hoursOptions = this.state.dayValue && this.state.dayValue.hours || [];
-
-    const condition = phoneError === null || dayError=== null || fioError === null;
-    const validForm = !(phoneError || dayError || fioError) && !condition;
+    const validForm = this.isValidForm();
     return (
       <div className='form'>
         <div>
@@ -152,7 +169,7 @@ class Form extends React.Component {
             error={fioError} />
         </div>
         <div className='form__footer'>
-          <Button title={'Записаться'} disabled={!validForm}/>
+          <Button onClick={this.onSumbit} title={'Записаться'} disabled={!validForm}/>
         </div>
         {isFetching && <Loader />}
       </div>
@@ -163,7 +180,8 @@ class Form extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     getCitiesAction: () => dispatch(getCities()),
-    getCityDateAction: (id) => dispatch(getCityDate(id))
+    getCityDateAction: (id) => dispatch(getCityDate(id)),
+    addItemAction: (data) => dispatch(addItem(data))
   }
 }
 

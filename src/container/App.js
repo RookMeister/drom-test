@@ -8,9 +8,14 @@ import {
   Redirect,
 } from "react-router-dom";
 import Form from '../components/Form/Form';
+import Table from '../components/Table/Table';
+
+import { delItem } from '../actions/ordersActions';
 
 
-function App() {
+function App({appointment, delItemAction}) {
+  const { isSuccess, orders } = appointment;
+  console.log(1, orders);
   return (
     <Router>
       <div className="App">
@@ -18,17 +23,20 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Онлайн запись</h1>
         </header>
-        <Switch>
-          <Route path="/orders">
-            888
-          </Route>
-          <Route exact path="/">
-            <Form />
-          </Route>
-          <Route exact path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+        <div className="App-body">
+          <Switch>
+            <Route path="/orders">
+              <Table deleteItem={delItemAction} data={orders}/>
+            </Route>
+            <Route exact path="/">
+              {isSuccess && <p>Вы успешно записаны</p>}
+              <Form />
+            </Route>
+            <Route exact path="*">
+              <Redirect to="/" />
+            </Route>
+          </Switch>
+        </div>
         <footer className="App-footer">
           Нажимая "Записаться", я выражаю своё согласие с обработкой моих персональных данных в соотвествии с принятой <a>политикой конфиденциальности</a> и принимаю <a>пользовательское соглашение</a>
         </footer>
@@ -39,8 +47,14 @@ function App() {
 
 const mapStateToProps = (store) => {
   return {
-    store,
+    appointment: store.orders,
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    delItemAction: (id) => dispatch(delItem(id)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
