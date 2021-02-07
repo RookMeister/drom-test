@@ -1,13 +1,13 @@
 import React from 'react'
 import './TextField.css';
 
-const TextField = ({name, placeholder, onChange, onBlur, error, type}) => {
+const TextField = ({value, placeholder, onChange, onBlur, error, type}) => {
   const blur = () => onBlur(type);
   return (
     <div className='text-field'>
       <input
+        value={value}
         type="text"
-        name={name}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={blur}

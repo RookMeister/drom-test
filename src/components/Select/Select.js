@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './Select.css';
 
 class Option extends React.Component {
