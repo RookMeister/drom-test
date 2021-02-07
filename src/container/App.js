@@ -24,7 +24,7 @@ function App({appointment, delItemAction}) {
         </header>
         <div className="App-body">
           <Switch>
-            <Route path="/orders">
+            <Route path="#/orders">
               <Table deleteItem={delItemAction} data={orders}/>
             </Route>
             <Route exact path="/">
