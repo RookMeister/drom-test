@@ -1,0 +1,18 @@
+table {
+  border-top: 1px solid #ede7e0;
+  color: #63574b;
+}
+
+table th {
+  padding: 10px 2px 10px 7px;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: top;
+  color: #c80000;
+  border-bottom: 2px solid #ede7e0;
+}
+
+table td {
+  padding: 5px 2px 7px 7px;
+  border-bottom: 1px solid #e1e1e1;
+}
