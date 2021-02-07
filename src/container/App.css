@@ -8,16 +8,19 @@
 }
 
 .App {
-  max-width: 500px;
   font-family: Arial, sans-serif;
 }
 
 .App-header {
+  max-width: 450px;
+  margin: auto;
   background-color: #ffffff;
   color: rgb(0, 0, 0);
 }
 
 .App-footer {
+  margin: auto;
+  width: 450px;
   margin-top: 20px;
   color: #8a8c93;
   font-size: 10px;
