@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../Select/Select';
+import Select from '@modules/core/Select/Select';
 import  "./CityInfo.css";
 
 const CityInfo = ({value, options, onBlur, onChange, error, type}) => {

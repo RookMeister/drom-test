@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button/Button';
+import Button from '@modules/core/Button/Button';
 import './Table.css';
 
 import { format } from 'date-fns';

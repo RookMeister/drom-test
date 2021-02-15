@@ -6,14 +6,14 @@ import ru from "date-fns/locale/ru";
 
 import  "./Form.css";
 
-import { getCities, getCityDate } from '../../actions/citiesActions';
-import { addItem } from '../../actions/ordersActions';
+import { getCities, getCityDate } from '@actions/citiesActions';
+import { addItem } from '@actions/ordersActions';
 
-import TextField from '../TextField/TextField';
-import Select from '../Select/Select';
-import CityInfo from '../CityInfo/CityInfo';
-import Loader from '../Loader/Loader';
-import Button from '../Button/Button';
+import TextField from '@modules/core/TextField/TextField';
+import Select from '@modules/core/Select/Select';
+import CityInfo from '@modules/appointment/CityInfo/CityInfo';
+import Loader from '@modules/core/Loader/Loader';
+import Button from '@modules/core/Button/Button';
 
 class Form extends React.Component {
   state = {
@@ -31,6 +31,7 @@ class Form extends React.Component {
   placeholder = { name: 'Владивосток' };
 
   componentDidMount() {
+    console.log(1);
     this.props.getCitiesAction();
   }
 
