@@ -6,7 +6,6 @@ import ru from "date-fns/locale/ru";
 
 import  "./Form.css";
 
-// import { getCities, getCityDate } from '@actions/citiesActions';
 import { addItem } from '@actions/ordersActions';
 
 import TextField from '@modules/core/TextField/TextField';
