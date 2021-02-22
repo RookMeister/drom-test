@@ -3,13 +3,11 @@ import Select from '@modules/core/Select/Select';
 import  "./CityInfo.css";
 
 const CityInfo = ({value, options, onBlur, onChange, error, type}) => {
-  let placeholder = options && options[0] || { name: 'Владивосток' } ;
-  let address, phones, price = '';
+  let placeholder = (options && options[0]) || { name: 'Владивосток' } ;
+  let phones = [];
   if (value) {
-    address = value.address
     phones = value.phones.map((phone) => <a key={phone} href={'tel:'+phone}>{phone}</a>)
-    phones = phones.length && phones.reduce((prev, curr) => [prev, ', ', curr]) || '';
-    price = value.price
+    phones = (phones.length && phones.reduce((prev, curr) => [prev, ', ', curr]) )|| '';
   }
   return (
     <div className='city-info'>
@@ -22,11 +20,13 @@ const CityInfo = ({value, options, onBlur, onChange, error, type}) => {
         onBlur={onBlur}
         renderValue={(value) => value && value.name}
         error={error} />
-        <div className='city-info__sub'>
-          {address && <p>{address} </p>}
-          {phones && <p>{phones}</p>}
-          {price && <p>Стоимость услуги {price} ₽</p>}
-        </div>
+        {value &&
+          <div className='city-info__sub'>
+            <p>{value.address} </p>
+            <p>{phones}</p>
+            <p>Стоимость услуги {value.price} ₽</p>
+          </div>
+        }
     </div>
 )};
 
